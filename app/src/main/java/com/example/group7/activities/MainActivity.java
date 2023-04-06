@@ -10,9 +10,9 @@ import android.os.Bundle;
 
 import com.example.group7.R;
 import com.example.group7.databinding.ActivityMainBinding;
-import com.example.group7.ui.cart.CartFragment;
-import com.example.group7.ui.home.HomeFragment;
-import com.example.group7.ui.user.UserFragment;
+import com.example.group7.UI.Fragment.CartFragment;
+import com.example.group7.UI.Fragment.HomeFragment;
+import com.example.group7.UI.Fragment.UserFragment;
 
 public class MainActivity extends AppCompatActivity {
 
