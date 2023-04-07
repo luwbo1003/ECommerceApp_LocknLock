@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.example.group7.R;
 import com.example.group7.UI.Fragment.HomeFragment;
-import com.example.group7.adapter.SliderAdapter;
+import com.example.group7.UI.Adapters.SliderAdapter;
 
 public class OnboardingActivity extends AppCompatActivity {
 

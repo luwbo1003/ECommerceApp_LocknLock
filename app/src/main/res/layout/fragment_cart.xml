@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:fontFamily="@font/poppins_medium"
-                android:text="Checkout"
+                android:text="Cart"
                 android:textColor="@color/black"
                 android:textSize="25dp" />
         </LinearLayout>
@@ -156,7 +156,7 @@
                 android:id="@+id/btn_checkout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/cate_bg"
+                android:background="@drawable/round_bg"
                 android:letterSpacing="0"
                 android:text="Checkout"
                 android:textAllCaps="false"

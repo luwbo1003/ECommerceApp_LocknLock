@@ -4,13 +4,53 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UI.Fragment.HomeFragment"
-    android:background="#4D9CDC">
+    android:background="@color/light_gray">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Home fragment" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <SearchView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="6dp"
+            android:background="@drawable/round_bg"
+            android:padding="3dp" />
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager2"
+            android:layout_width="wrap_content"
+            android:layout_height="180dp" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:background="#EAE7E7"
+            android:scrollbars="none" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Gợi ý sản phẩm"
+                android:gravity="center"
+                android:textSize="15dp"
+                android:textColor="@color/bg_screen1"
+                android:fontFamily="@font/poppins_medium" />
+
+            <GridView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </GridView>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
 
 </FrameLayout>

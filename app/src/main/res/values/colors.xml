@@ -8,6 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="dark_gray">#1D1D1D</color>
+    <color name="light_gray">#D6D6D6</color>
 
     <color name="tarpern">#00E60954</color>
     <color name="somllger">#ECE5E5</color>
@@ -35,6 +36,7 @@
     <color name="dot_light_screen4">#e4b5fc</color>
     <color name="greys">#373737</color>
 
+
     <array name="array_dot_active">
         <item>@color/dot_light_screen1</item>
         <item>@color/dot_light_screen2</item>
@@ -48,4 +50,5 @@
         <item>@color/dot_dark_screen3</item>
         <item>@color/dot_dark_screen4</item>
     </array>
+
 </resources>
