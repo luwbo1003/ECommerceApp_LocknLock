@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
@@ -18,8 +19,11 @@ import android.view.ViewGroup;
 import com.example.group7.R;
 import com.example.group7.UI.Adapters.BannerApdater;
 import com.example.group7.UI.Adapters.BannerViewHolder;
+import com.example.group7.UI.Adapters.CategoryAdapter;
 import com.example.group7.ViewModels.BannerViewModel;
+import com.example.group7.ViewModels.CategoryViewModel;
 import com.example.group7.models.Banner;
+import com.example.group7.models.Category;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -77,6 +81,9 @@ public class HomeFragment extends Fragment {
     }
 
     private BannerViewModel bannerViewModel;
+    private CategoryViewModel categoryViewModel;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -101,6 +108,9 @@ public class HomeFragment extends Fragment {
 //
 //            }
 //        });
+
+        //Banners
+
         ViewPager2 viewPager2 = contentView.findViewById(R.id.viewPager2);
         BannerApdater bannerApdater = new BannerApdater(viewPager2, contentView.getContext());
 
@@ -129,6 +139,21 @@ public class HomeFragment extends Fragment {
             }
         });
         viewPager2.setPageTransformer(compositePageTransformer);
+
+        // Category
+        RecyclerView recyclerView = contentView.findViewById(R.id.recyclerView);
+        CategoryAdapter categoryAdapter = new CategoryAdapter(contentView.getContext());
+        recyclerView.setLayoutManager(new LinearLayoutManager(contentView.getContext(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerView.setAdapter(categoryAdapter);
+
+        // retrieve categories data
+
+        categoryViewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
+        categoryViewModel.getCategoriesLiveData().observe(getViewLifecycleOwner(), categories -> {
+            if (categories != null){
+                categoryAdapter.setCategories(categories);
+            }
+        });
 
         return contentView;
     }

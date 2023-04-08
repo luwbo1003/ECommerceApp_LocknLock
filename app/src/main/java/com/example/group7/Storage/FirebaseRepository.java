@@ -41,13 +41,13 @@ public class FirebaseRepository {
         return firebaseData;
     }
 
-    public void deleteFirebaseData(String nodePath, String key) {
-        dbRef.child(nodePath).child(key).removeValue();
-    }
-
-    public void updateFirebaseData(String nodePath, String key, String detailPath, Object newDetail) {
-        dbRef.child(nodePath).child(key).child(detailPath).setValue(newDetail);
-    }
+//    public void deleteFirebaseData(String nodePath, String key) {
+//        dbRef.child(nodePath).child(key).removeValue();
+//    }
+//
+//    public void updateFirebaseData(String nodePath, String key, String detailPath, Object newDetail) {
+//        dbRef.child(nodePath).child(key).child(detailPath).setValue(newDetail);
+//    }
 
 //    public <T> void addFirebaseData(String nodePath, T data) {
 //        String key = dbRef.child(nodePath).push().getKey();
