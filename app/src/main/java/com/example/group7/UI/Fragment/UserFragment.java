@@ -1,5 +1,6 @@
 package com.example.group7.UI.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,8 +8,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.group7.R;
+import com.example.group7.activities.LoginActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -47,6 +53,10 @@ public class UserFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+    FirebaseAuth auth;
+    Button button;
+    TextView txt;
+    FirebaseUser user;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,12 +65,35 @@ public class UserFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.fragment_user, container, false);
+        auth = FirebaseAuth.getInstance();
+        button = root.findViewById(R.id.btn_logout);
+        txt = root.findViewById(R.id.txt);
+        user = auth.getCurrentUser();
+        if(user == null){
+            Intent intent = new Intent(root.getContext().getApplicationContext(), LoginActivity.class);
+            startActivity(intent);
+            getActivity().finish();
+        }else  {
+            txt.setText(user.getEmail());
+        }
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(root.getContext().getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user, container, false);
+        return root;
     }
 }

@@ -24,7 +24,7 @@
         app:layout_constraintVertical_bias="0.084" />
 
     <EditText
-        android:id="@+id/ed_username"
+        android:id="@+id/ed_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
@@ -56,11 +56,17 @@
         android:background="@drawable/round_bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ed_username"
+        app:layout_constraintTop_toBottomOf="@+id/ed_user"
         app:layout_constraintWidth_percent=".8"
         android:drawableStart="@drawable/ic_pass"
         android:drawablePadding="10dp"/>
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints" />
     <Button
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
@@ -99,7 +105,7 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:text="Register now"
-        android:textColor="@color/dark_gray"
+        android:textColor="@color/dot_dark_screen3"
         android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -47,7 +47,7 @@ public class OnboardingActivity extends AppCompatActivity {
     }
 
     public void skip(View view) {
-        startActivity(new Intent(this, HomeFragment.class));
+        startActivity(new Intent(this, LoginActivity.class));
         finish();
     }
 

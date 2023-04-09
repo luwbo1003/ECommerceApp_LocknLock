@@ -18,7 +18,7 @@ import com.example.group7.R;
 
 public class WelcomeActivity extends AppCompatActivity {
 
-    private static  int SPLASH_TIMER = 5000;
+    private static  int SPLASH_TIMER = 4000;
     ImageView action_image;
     Animation move;
     SharedPreferences onBoardingScreen;
@@ -47,7 +47,7 @@ public class WelcomeActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 } else {
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                     startActivity(intent);
                     finish();
                 }
