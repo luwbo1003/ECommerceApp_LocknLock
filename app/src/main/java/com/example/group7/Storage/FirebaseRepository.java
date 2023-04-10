@@ -36,26 +36,42 @@ public class FirebaseRepository {
             public void onCancelled(@NonNull DatabaseError error) {
                 firebaseData.setValue(null);
             }
-
         });
         return firebaseData;
     }
 
-//    public void deleteFirebaseData(String nodePath, String key) {
-//        dbRef.child(nodePath).child(key).removeValue();
-//    }
-//
-//    public void updateFirebaseData(String nodePath, String key, String detailPath, Object newDetail) {
-//        dbRef.child(nodePath).child(key).child(detailPath).setValue(newDetail);
-//    }
+    public <T> LiveData<T> getFirebaseSingleData(String nodePath, Class<T> dataType) {
+        MutableLiveData<T> firebaseData = new MutableLiveData<>();
+        dbRef.child(nodePath).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                T data = snapshot.getValue(dataType);
+                firebaseData.setValue(data);
+            }
 
-//    public <T> void addFirebaseData(String nodePath, T data) {
-//        String key = dbRef.child(nodePath).push().getKey();
-//        // Update the "key" field in the data object
-//        if (data instanceof Order) {
-//            Order order = (Order) data;
-//            order.setId(key);
-//        }
-//        dbRef.child(nodePath).child(key).setValue(data);
-//    }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                firebaseData.setValue(null);
+            }
+        });
+        return firebaseData;
+    }
+
+    public void deleteFirebaseData(String nodePath, String key) {
+        dbRef.child(nodePath).child(key).removeValue();
+    }
+
+    public void updateFirebaseData(String nodePath, String key, String detailPath, Object newDetail) {
+        dbRef.child(nodePath).child(key).child(detailPath).setValue(newDetail);
+    }
+
+    public String getKey(String nodePath){
+        String key = dbRef.child(nodePath).push().getKey();
+        return key;
+    }
+
+    public <T> void addFirebaseData(String nodePath, T data, String key) {
+        dbRef.child(nodePath).child(key).setValue(data);
+    }
+
 }

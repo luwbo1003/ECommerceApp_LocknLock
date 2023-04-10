@@ -17,13 +17,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.GridView;
 
 import com.example.group7.R;
 import com.example.group7.UI.Adapters.BannerApdater;
 import com.example.group7.UI.Adapters.BannerViewHolder;
 import com.example.group7.UI.Adapters.CategoryAdapter;
+import com.example.group7.UI.Adapters.ProductAdapter;
 import com.example.group7.ViewModels.BannerViewModel;
 import com.example.group7.ViewModels.CategoryViewModel;
+import com.example.group7.ViewModels.ProductViewModel;
 import com.example.group7.models.Banner;
 import com.example.group7.models.Category;
 import com.google.firebase.database.DataSnapshot;
@@ -85,6 +88,7 @@ public class HomeFragment extends Fragment {
 
     private BannerViewModel bannerViewModel;
     private CategoryViewModel categoryViewModel;
+    private ProductViewModel productViewModel;
 
 
     @Override
@@ -149,7 +153,7 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(contentView.getContext(), LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setAdapter(categoryAdapter);
 
-        // retrieve categories data
+            // retrieve categories data
 
         categoryViewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
         categoryViewModel.getCategoriesLiveData().observe(getViewLifecycleOwner(), categories -> {
@@ -158,6 +162,16 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        //Gridview product
+        GridView gridView = contentView.findViewById(R.id.gridView);
+        ProductAdapter productAdapter = new ProductAdapter(contentView.getContext());
+        gridView.setAdapter(productAdapter);
+
+
+        productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
+        productViewModel.getProductLiveData().observe(getViewLifecycleOwner(), products -> {
+            
+        });
         return contentView;
     }
 }
