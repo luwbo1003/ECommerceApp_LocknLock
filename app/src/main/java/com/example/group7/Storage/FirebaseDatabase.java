@@ -7,16 +7,15 @@ import androidx.lifecycle.MutableLiveData;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class FirebaseRepository {
+public class FirebaseDatabase {
     private DatabaseReference dbRef;
 
-    public FirebaseRepository() {
-        dbRef = FirebaseDatabase.getInstance().getReference();
+    public FirebaseDatabase() {
+        dbRef = com.google.firebase.database.FirebaseDatabase.getInstance().getReference();
     }
 
     public <T> LiveData<ArrayList<T>> getFirebaseData(String nodePath, Class<T> dataType) {

@@ -1,5 +1,6 @@
 package com.example.group7.UI.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.GridView;
@@ -27,6 +29,7 @@ import com.example.group7.UI.Adapters.ProductAdapter;
 import com.example.group7.ViewModels.BannerViewModel;
 import com.example.group7.ViewModels.CategoryViewModel;
 import com.example.group7.ViewModels.ProductViewModel;
+import com.example.group7.activities.ProductDetailActivity;
 import com.example.group7.models.Banner;
 import com.example.group7.models.Category;
 import com.google.firebase.database.DataSnapshot;
@@ -98,24 +101,6 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View contentView = inflater.inflate(R.layout.fragment_home, container, false);
 
-//        ArrayList<Banner> banners = new ArrayList<>();
-
-//        DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("Banners");
-//        dbref.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-//                    Banner banner = dataSnapshot.getValue(Banner.class);
-//                    banners.add(banner);
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-
         //Banners
 
         ViewPager2 viewPager2 = contentView.findViewById(R.id.viewPager2);
@@ -170,8 +155,28 @@ public class HomeFragment extends Fragment {
 
         productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
         productViewModel.getProductLiveData().observe(getViewLifecycleOwner(), products -> {
-            
+            if (products != null){
+                productAdapter.setProducts(products);
+            }
+
         });
+//        gridView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                String pro_id = String.valueOf(gridView.getPositionForView(view));
+//                productViewModel.getProductLiveData();
+//                productViewModel.getProductByIdFromDb(productId).observe(getViewLifecycleOwner(), product -> {
+//                Intent intent =new Intent(getContext(), ProductDetailActivity.class);
+//                intent.putExtra("id",pro);
+//                startActivity(intent);
+//                });
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
         return contentView;
     }
 }
