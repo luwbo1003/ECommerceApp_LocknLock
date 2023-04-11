@@ -32,6 +32,7 @@ import com.example.group7.ViewModels.ProductViewModel;
 import com.example.group7.activities.ProductDetailActivity;
 import com.example.group7.models.Banner;
 import com.example.group7.models.Category;
+import com.example.group7.models.Product;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -151,6 +152,28 @@ public class HomeFragment extends Fragment {
         GridView gridView = contentView.findViewById(R.id.gridView);
         ProductAdapter productAdapter = new ProductAdapter(contentView.getContext());
         gridView.setAdapter(productAdapter);
+
+
+//
+//        DatabaseReference prodRef = FirebaseDatabase.getInstance().getReference().child("Product");
+//        ArrayList<Product> products = new ArrayList<>();
+//
+//        prodRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+//                    Product product = dataSnapshot.getValue(Product.class);
+//                    products.add(product);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//
+//        productAdapter.setProducts(products);
 
 
         productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);

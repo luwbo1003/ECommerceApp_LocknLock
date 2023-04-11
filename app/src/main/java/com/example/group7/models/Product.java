@@ -4,8 +4,8 @@ public class Product {
     private int id;
     private  String product_name;
     private String product_img;
-    private String product_price;
-    private String product_des;
+    private int product_price;
+    private int product_quantity;
 
     public int getId() {
         return id;
@@ -31,31 +31,31 @@ public class Product {
         this.product_img = product_img;
     }
 
-    public String getProduct_price() {
+    public int getProduct_price() {
         return product_price;
     }
 
-    public void setProduct_price(String product_price) {
+    public void setProduct_price(int product_price) {
         this.product_price = product_price;
     }
 
-    public String getProduct_des() {
-        return product_des;
+    public int getProduct_des() {
+        return product_quantity;
     }
 
-    public void setProduct_des(String product_des) {
-        this.product_des = product_des;
+    public void setProduct_des(int product_des) {
+        this.product_quantity = product_des;
     }
 
     public Product() {
 
     }
 
-    public Product(int id, String product_name, String proImg_name, String product_price, String product_des) {
+    public Product(int id, String product_name, String proImg_name, int product_price, int product_quantity) {
         this.id = id;
         this.product_name = product_name;
         this.product_img = proImg_name;
         this.product_price = product_price;
-        this.product_des = product_des;
+        this.product_quantity = product_quantity;
     }
 }

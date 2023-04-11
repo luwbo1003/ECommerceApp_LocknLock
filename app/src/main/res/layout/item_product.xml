@@ -3,10 +3,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/product_cart"
     android:orientation="vertical"
-    android:paddingVertical="5dp"
-    android:elevation="15dp">
+    android:paddingVertical="5dp">
 
     <com.makeramen.roundedimageview.RoundedImageView
         xmlns:app="http://schemas.android.com/apk/res-auto"

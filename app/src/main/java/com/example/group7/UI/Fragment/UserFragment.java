@@ -1,6 +1,8 @@
 package com.example.group7.UI.Fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -53,10 +55,6 @@ public class UserFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-    FirebaseAuth auth;
-    Button button;
-    TextView txt;
-    FirebaseUser user;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -68,27 +66,37 @@ public class UserFragment extends Fragment {
 
     }
 
+    FirebaseAuth auth;
+    TextView txt;
+    FirebaseUser user;
+    TextView tv_email;
+    Button btn_logout;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_user, container, false);
-        auth = FirebaseAuth.getInstance();
-        button = root.findViewById(R.id.btn_logout);
-        txt = root.findViewById(R.id.txt);
-        user = auth.getCurrentUser();
-        if(user == null){
-            Intent intent = new Intent(root.getContext().getApplicationContext(), LoginActivity.class);
-            startActivity(intent);
-            getActivity().finish();
-        }else  {
-            txt.setText(user.getEmail());
-        }
+        SharedPreferences mPreferences= getActivity().getSharedPreferences("isLoggin", Context.MODE_PRIVATE);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        tv_email= root.findViewById(R.id.tv_email);
+        btn_logout = root.findViewById(R.id.btn_logout);
+
+        String id;
+        Bundle args = getArguments();
+        if (args != null) {
+            id = args.getString("id");
+            String emailUser = args.getString("email");
+            tv_email.setText(emailUser);
+        }
+        btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(root.getContext().getApplicationContext(), LoginActivity.class);
+                // clear preferences
+                SharedPreferences.Editor editor = mPreferences.edit();
+                editor.clear();
+                editor.apply();
                 startActivity(intent);
                 getActivity().finish();
             }
