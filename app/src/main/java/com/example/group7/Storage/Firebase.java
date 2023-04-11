@@ -11,10 +11,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class FirebaseDatabase {
+public class Firebase {
     private DatabaseReference dbRef;
 
-    public FirebaseDatabase() {
+    public Firebase() {
         dbRef = com.google.firebase.database.FirebaseDatabase.getInstance().getReference();
     }
 

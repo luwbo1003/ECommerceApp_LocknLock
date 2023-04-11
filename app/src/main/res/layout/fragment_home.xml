@@ -3,74 +3,83 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.Fragment.HomeFragment"
-    android:background="@color/light_gray">
+    android:background="@color/light_gray"
+    tools:context=".UI.Fragment.HomeFragment">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginHorizontal="7dp"
-        android:orientation="vertical">
-
-        <SearchView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/round_bg"
-            android:padding="3dp" />
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewPager2"
-            android:layout_width="wrap_content"
-            android:layout_height="180dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="3dp"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="Categories"
-                android:textColor="@color/black" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="92dp"
-                android:background="@color/light_gray"
-                android:scrollbars="none" />
-        </LinearLayout>
+<!--    <androidx.core.widget.NestedScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:fillViewport="true">-->
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginHorizontal="7dp"
             android:orientation="vertical">
 
-            <TextView
+            <SearchView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="5dp"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="Gợi ý sản phẩm"
-                android:textColor="@color/black" />
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/round_bg"
+                android:padding="3dp" />
 
-            <GridView
-                android:id="@+id/gridView"
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPager2"
+                android:layout_width="wrap_content"
+                android:layout_height="180dp" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:columnWidth="150dp"
-                android:gravity="center"
-                android:numColumns="auto_fit"
-                android:paddingHorizontal="7dp"
-                android:stretchMode="columnWidth"></GridView>
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="3dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Categories"
+                    android:textColor="@color/black" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="92dp"
+                    android:background="@color/light_gray"
+                    android:scrollbars="none" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="5dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Gợi ý sản phẩm"
+                    android:textColor="@color/black" />
+
+                <GridView
+                    android:id="@+id/gridView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnWidth="150dp"
+                    android:gravity="center"
+                    android:horizontalSpacing="12dp"
+                    android:numColumns="auto_fit"
+                    android:paddingHorizontal="10dp"
+                    android:stretchMode="columnWidth"
+                    android:verticalSpacing="12dp"></GridView>
+
+            </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
+<!--    </androidx.core.widget.NestedScrollView>-->
 
 </FrameLayout>

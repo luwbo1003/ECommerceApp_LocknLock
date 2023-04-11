@@ -3,12 +3,25 @@ package com.example.group7.UI.Fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.group7.R;
+import com.example.group7.UI.Adapters.CartAdapter;
+import com.example.group7.ViewModels.CartViewModel;
+import com.example.group7.ViewModels.ProductViewModel;
+import com.example.group7.models.Cart;
+import com.example.group7.models.Product;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -57,10 +70,60 @@ public class CartFragment extends Fragment {
         }
     }
 
+    CartViewModel cartViewModel;
+    ProductViewModel productViewModel;
+    Button btn_checkout;
+    TextView tv_subtotal, tv_total, tv_shipping;
+    String user_id = "";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cart, container, false);
+        View contentView = inflater.inflate(R.layout.fragment_cart, container, false);
+
+        btn_checkout = contentView.findViewById(R.id.btn_checkout);
+        tv_subtotal = contentView.findViewById(R.id.iv_subtotal_price);
+        tv_total = contentView.findViewById(R.id.iv_total_price);
+        tv_shipping = contentView.findViewById(R.id.iv_delivery_price);
+
+
+        Bundle args = getArguments();
+        if (args != null) {
+            user_id = args.getString("id");
+        }
+
+        //RecyclerView for Carts
+        RecyclerView recyclerView = contentView.findViewById(R.id.ryc_cart);
+        CartAdapter cartAdapter = new CartAdapter(contentView.getContext());
+        recyclerView.setAdapter(cartAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(contentView.getContext()));
+
+        //Retrieve carts data
+        cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
+        cartViewModel.getCartsLiveData().observe(getViewLifecycleOwner(), carts -> {
+            if (carts != null) {
+                ArrayList<Cart> list = CartViewModel.getCartsByUserId(carts, user_id);
+                cartAdapter.setCarts(list);
+            }
+        });
+
+        //Retrieve products data
+        productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
+        productViewModel.getProductLiveData().observe(getViewLifecycleOwner(), products -> {
+            if (products != null) {
+                cartAdapter.setProducts(products);
+            }
+        });
+
+        cartAdapter.getSubtotal().observe(getViewLifecycleOwner(), total -> {
+            if (total != null) {
+                tv_subtotal.setText(String.valueOf(total));
+                int ship = Integer.parseInt(tv_shipping.getText().toString());
+                int totals = total + ship;
+                tv_total.setText(String.valueOf(totals));
+            }
+        });
+
+        return contentView;
     }
 }
