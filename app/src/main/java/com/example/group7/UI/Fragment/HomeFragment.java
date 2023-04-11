@@ -117,7 +117,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        //Set Transformer for ViewPager2
+        //Set Transformer
         viewPager2.setClipToPadding(false);
         viewPager2.setClipChildren(false);
         viewPager2.setOffscreenPageLimit(3);
@@ -154,28 +154,6 @@ public class HomeFragment extends Fragment {
         gridView.setAdapter(productAdapter);
 
 
-//
-//        DatabaseReference prodRef = FirebaseDatabase.getInstance().getReference().child("Product");
-//        ArrayList<Product> products = new ArrayList<>();
-//
-//        prodRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-//                    Product product = dataSnapshot.getValue(Product.class);
-//                    products.add(product);
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//
-//        productAdapter.setProducts(products);
-
-
         productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
         productViewModel.getProductLiveData().observe(getViewLifecycleOwner(), products -> {
             if (products != null){
@@ -183,23 +161,17 @@ public class HomeFragment extends Fragment {
             }
 
         });
-//        gridView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                String pro_id = String.valueOf(gridView.getPositionForView(view));
-//                productViewModel.getProductLiveData();
-//                productViewModel.getProductByIdFromDb(productId).observe(getViewLifecycleOwner(), product -> {
-//                Intent intent =new Intent(getContext(), ProductDetailActivity.class);
-//                intent.putExtra("id",pro);
-//                startActivity(intent);
-//                });
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String pro_id = String.valueOf(gridView.getItemIdAtPosition(position));
+                productViewModel.getProductByIdDb(pro_id).observe(getViewLifecycleOwner(), product -> {
+                    Intent intent = new Intent(getContext(), ProductDetailActivity.class);
+                    intent.putExtra("product", product);
+                    startActivity(intent);
+                });
+            }
+        });
         return contentView;
     }
 }

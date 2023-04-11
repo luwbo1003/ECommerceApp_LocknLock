@@ -11,14 +11,12 @@ import java.util.ArrayList;
 public class ProductViewModel extends ViewModel {
     private Firebase firebase;
 
-//    private ArrayList<Product> products;
     private LiveData<ArrayList<Product>> productLiveData ;
 
     public ProductViewModel(){
         firebase = new Firebase();
         productLiveData = firebase.getFirebaseData("Products", Product.class);
 
-//        productLiveData = new
     }
 
     public LiveData<ArrayList<Product>> getProductLiveData() {
@@ -31,6 +29,10 @@ public class ProductViewModel extends ViewModel {
             }
         }
         return null;
+    }
+
+    public LiveData<Product> getProductByIdDb(String productID){
+        return firebase.getFirebaseSingleData("Products/" + productID, Product.class);
     }
 
 

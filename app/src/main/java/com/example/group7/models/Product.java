@@ -1,11 +1,14 @@
 package com.example.group7.models;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
     private int id;
     private  String product_name;
     private String product_img;
     private int product_price;
     private int product_quantity;
+    private  int product_cate;
 
     public int getId() {
         return id;
@@ -39,23 +42,31 @@ public class Product {
         this.product_price = product_price;
     }
 
-    public int getProduct_des() {
+    public int getProduct_quantity() {
         return product_quantity;
     }
 
-    public void setProduct_des(int product_des) {
-        this.product_quantity = product_des;
+    public void setProduct_quantity(int product_quantity) {
+        this.product_quantity = product_quantity;
     }
 
-    public Product() {
-
+    public int getProduct_cate() {
+        return product_cate;
     }
 
-    public Product(int id, String product_name, String proImg_name, int product_price, int product_quantity) {
+    public void setProduct_cate(int product_cate) {
+        this.product_cate = product_cate;
+    }
+
+    public Product(){
+
+    }
+    public Product(int id, String product_name, String product_img, int product_price, int product_quantity, int product_cate) {
         this.id = id;
         this.product_name = product_name;
-        this.product_img = proImg_name;
+        this.product_img = product_img;
         this.product_price = product_price;
         this.product_quantity = product_quantity;
+        this.product_cate = product_cate;
     }
 }

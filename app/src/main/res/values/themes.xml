@@ -2,15 +2,15 @@
     <!-- Base application theme. -->
     <style name="Theme.ECommerceApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#209587</item>
-        <item name="colorPrimaryVariant">#209587</item>
+        <item name="colorPrimary">#FF9D90</item>
+        <item name="colorPrimaryVariant">#FF9D90</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">#209587</item>
-        <item name="colorSecondaryVariant">#209587</item>
+        <item name="colorSecondary">#FF9D90</item>
+        <item name="colorSecondaryVariant">#FF9D90</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">#209587</item>
+        <item name="android:statusBarColor">#FF9D90</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>

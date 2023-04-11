@@ -75,11 +75,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartViewHolder> {
             holder.getTv_title().setText(product.getProduct_name());
             holder.getTv_price().setText(product.getProduct_price() + "");
             holder.getTv_quantity().setText(mCurrent.getQuantity() + "");
-            holder.setMaxQuan(product.getProduct_des());
+            holder.setMaxQuan(product.getProduct_quantity());
             holder.setTempQuan(mCurrent.getQuantity());
 
             updateSubTotal();
-
             StorageUtils.loadStorageImageIntoImageView("product_img", product.getProduct_img(), holder.getIv_image());
         }
     }
