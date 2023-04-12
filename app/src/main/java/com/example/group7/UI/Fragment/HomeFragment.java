@@ -154,6 +154,9 @@ public class HomeFragment extends Fragment {
                 productViewModel.getProductByIdDb(pro_id).observe(getViewLifecycleOwner(), product -> {
                     Intent intent = new Intent(getContext(), ProductDetailActivity.class);
                     intent.putExtra("product", product);
+                    Bundle arr = getArguments();
+                    if(arr != null)
+                        intent.putExtra("userID", arr.getString("id"));
                     startActivity(intent);
                 });
             }

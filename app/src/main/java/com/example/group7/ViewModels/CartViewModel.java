@@ -1,5 +1,7 @@
 package com.example.group7.ViewModels;
 
+import android.content.Context;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -37,5 +39,17 @@ public class CartViewModel extends ViewModel {
 
     public static void updateCart(String id, int detail){
         firebase.updateFirebaseData("Carts", id, "quantity", detail );
+    }
+
+    public static void  updateCart(String id, int detail, Context context, String success, String fail ){
+        firebase.updateFirebaseData("Carts", id, "quantity", detail , context ,success, fail);
+    }
+
+    public static void addToCart(Cart data, String key, Context context, String success, String fail){
+        firebase.addFirebaseData("Carts", data, key, context, success, fail);
+    }
+
+    public String getKey(){
+        return firebase.getKey("Carts");
     }
 }

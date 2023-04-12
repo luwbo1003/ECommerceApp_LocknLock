@@ -17,11 +17,16 @@ import android.widget.TextView;
 import com.example.group7.R;
 import com.example.group7.UI.Adapters.CartAdapter;
 import com.example.group7.ViewModels.CartViewModel;
+import com.example.group7.ViewModels.OrderViewModel;
 import com.example.group7.ViewModels.ProductViewModel;
 import com.example.group7.models.Cart;
+import com.example.group7.models.Order;
 import com.example.group7.models.Product;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -75,6 +80,7 @@ public class CartFragment extends Fragment {
     Button btn_checkout;
     TextView tv_subtotal, tv_total, tv_shipping;
     String user_id = "";
+    ArrayList<Cart> list;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -102,7 +108,7 @@ public class CartFragment extends Fragment {
         cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
         cartViewModel.getCartsLiveData().observe(getViewLifecycleOwner(), carts -> {
             if (carts != null) {
-                ArrayList<Cart> list = CartViewModel.getCartsByUserId(carts, user_id);
+                list = CartViewModel.getCartsByUserId(carts, user_id);
                 cartAdapter.setCarts(list);
             }
         });
@@ -121,6 +127,26 @@ public class CartFragment extends Fragment {
                 int ship = Integer.parseInt(tv_shipping.getText().toString());
                 int totals = total + ship;
                 tv_total.setText(String.valueOf(totals));
+            }
+        });
+
+        btn_checkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar calendar = Calendar.getInstance();
+                Date now = calendar.getTime();
+                SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                String strDate = formatter.format(now);
+                String total = tv_total.getText().toString();
+
+                OrderViewModel orderViewModel = new OrderViewModel();
+                String key = orderViewModel.getOrderKey();
+                Order order = new Order(key, strDate, "My Purchases", user_id, total);
+
+                orderViewModel.addOrder(order, key, getContext(), "Purchase successfully", "Purchase failed");
+                for (Cart cart : list) {
+                    CartViewModel.deleteCart(cart.getId());
+                }
             }
         });
 
