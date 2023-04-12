@@ -1,4 +1,4 @@
-package com.example.group7.UI.Adapters;
+package com.example.group7.UI.ViewHolder;
 
 import android.content.Context;
 import android.view.View;
@@ -8,6 +8,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.group7.R;
+import com.example.group7.UI.Adapters.BannerApdater;
 import com.example.group7.models.Banner;
 import com.makeramen.roundedimageview.RoundedImageView;
 

@@ -1,4 +1,4 @@
-package com.example.group7.UI.Adapters;
+package com.example.group7.UI.ViewHolder;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.group7.R;
+import com.example.group7.UI.Adapters.CartAdapter;
 import com.example.group7.ViewModels.CartViewModel;
 
 public class CartViewHolder extends RecyclerView.ViewHolder {

@@ -12,34 +12,20 @@ import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.GridView;
 
 import com.example.group7.R;
 import com.example.group7.UI.Adapters.BannerApdater;
-import com.example.group7.UI.Adapters.BannerViewHolder;
 import com.example.group7.UI.Adapters.CategoryAdapter;
 import com.example.group7.UI.Adapters.ProductAdapter;
 import com.example.group7.ViewModels.BannerViewModel;
 import com.example.group7.ViewModels.CategoryViewModel;
 import com.example.group7.ViewModels.ProductViewModel;
 import com.example.group7.activities.ProductDetailActivity;
-import com.example.group7.models.Banner;
-import com.example.group7.models.Category;
-import com.example.group7.models.Product;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.

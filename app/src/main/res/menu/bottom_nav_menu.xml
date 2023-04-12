@@ -8,7 +8,11 @@
     <item android:title="Cart"
         android:id="@+id/cart"
         android:icon="@drawable/ic_baseline_shopping_cart"/>
+    <item android:title="Order"
+        android:id="@+id/order"
+        android:icon="@drawable/order"/>
     <item android:title="User"
         android:id="@+id/user"
         android:icon="@drawable/ic_baseline_person"/>
+
 </menu>

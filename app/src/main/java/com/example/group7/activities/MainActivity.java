@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import android.os.Bundle;
 
 import com.example.group7.R;
+import com.example.group7.UI.Fragment.OrderFragment;
 import com.example.group7.databinding.ActivityMainBinding;
 import com.example.group7.UI.Fragment.CartFragment;
 import com.example.group7.UI.Fragment.HomeFragment;
@@ -34,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.cart:
                     replaceFragment(new CartFragment());
+                    break;
+                case R.id.order:
+                    replaceFragment(new OrderFragment());
                     break;
                 case R.id.user:
                     replaceFragment(new UserFragment());

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +12,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.group7.R;
 import com.example.group7.Storage.StorageUtils;
+import com.example.group7.UI.ViewHolder.BannerViewHolder;
 import com.example.group7.models.Banner;
 
 import java.util.ArrayList;

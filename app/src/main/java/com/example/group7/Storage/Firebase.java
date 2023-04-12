@@ -1,9 +1,14 @@
 package com.example.group7.Storage;
 
+import android.content.Context;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -65,13 +70,41 @@ public class Firebase {
         dbRef.child(nodePath).child(key).child(detailPath).setValue(newDetail);
     }
 
-    public String getKey(String nodePath){
+    public void updateFirebaseData(String nodePath, String key, String detailPath, Object newDetail, Context context, String success, String fail) {
+        dbRef.child(nodePath).child(key).child(detailPath).setValue(newDetail).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(context, success, Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(context, fail, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public String getKey(String nodePath) {
         String key = dbRef.child(nodePath).push().getKey();
         return key;
     }
 
     public <T> void addFirebaseData(String nodePath, T data, String key) {
         dbRef.child(nodePath).child(key).setValue(data);
+    }
+
+    public <T> void addFirebaseData(String nodePath, T data, String key, Context context, String success, String fail) {
+        dbRef.child(nodePath).child(key).setValue(data).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(context, success, Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(context, fail, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }
