@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_all"
+    android:background="@color/light_gray"
     tools:context=".UI.Fragment.HomeFragment">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -43,6 +46,7 @@
                     android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="92dp"
+                    android:background="@color/light_gray"
                     android:scrollbars="none" />
             </LinearLayout>
 
@@ -62,18 +66,19 @@
                 <GridView
                     android:id="@+id/gridView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="1027dp"
                     android:columnWidth="150dp"
                     android:gravity="center"
                     android:horizontalSpacing="12dp"
                     android:numColumns="auto_fit"
                     android:paddingHorizontal="10dp"
                     android:stretchMode="columnWidth"
-                    android:verticalSpacing="12dp"></GridView>
+                    android:verticalSpacing="12dp" />
 
             </LinearLayout>
 
         </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</FrameLayout>
+</ScrollView>
