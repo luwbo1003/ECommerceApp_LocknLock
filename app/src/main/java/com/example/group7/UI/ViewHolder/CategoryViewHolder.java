@@ -1,6 +1,7 @@
 package com.example.group7.UI.ViewHolder;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.group7.R;
 import com.example.group7.UI.Adapters.CategoryAdapter;
+import com.example.group7.activities.SearchActivity;
 
 public class CategoryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     private CategoryAdapter categoryAdapter;
@@ -56,6 +58,8 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder implements View.
 
     @Override
     public void onClick(View v) {
-
+        Intent intent = new Intent(mainActivity, SearchActivity.class);
+        intent.putExtra("cate_id", id);
+        mainActivity.startActivity(intent);
     }
 }

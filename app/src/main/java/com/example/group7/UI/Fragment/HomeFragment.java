@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,6 +27,7 @@ import com.example.group7.ViewModels.BannerViewModel;
 import com.example.group7.ViewModels.CategoryViewModel;
 import com.example.group7.ViewModels.ProductViewModel;
 import com.example.group7.activities.ProductDetailActivity;
+import com.example.group7.activities.SearchActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -79,7 +81,7 @@ public class HomeFragment extends Fragment {
     private BannerViewModel bannerViewModel;
     private CategoryViewModel categoryViewModel;
     private ProductViewModel productViewModel;
-
+    private String userID;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -88,8 +90,12 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View contentView = inflater.inflate(R.layout.fragment_home, container, false);
 
-        //Banners
+        Bundle arr = getArguments();
+        if(arr != null){
+            userID = arr.getString("id");
+        }
 
+        //Banners
         ViewPager2 viewPager2 = contentView.findViewById(R.id.viewPager2);
         BannerApdater bannerApdater = new BannerApdater(viewPager2, contentView.getContext());
 
@@ -154,13 +160,32 @@ public class HomeFragment extends Fragment {
                 productViewModel.getProductByIdDb(pro_id).observe(getViewLifecycleOwner(), product -> {
                     Intent intent = new Intent(getContext(), ProductDetailActivity.class);
                     intent.putExtra("product", product);
-                    Bundle arr = getArguments();
-                    if(arr != null)
-                        intent.putExtra("userID", arr.getString("id"));
+                    intent.putExtra("userID", userID);
                     startActivity(intent);
                 });
             }
         });
+
+        //Search
+        SearchView searchView = contentView.findViewById(R.id.sv_product_home);
+        searchView.clearFocus();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Intent intent = new Intent(getActivity(), SearchActivity.class);
+                intent.putExtra("product_name", query);
+                intent.putExtra("userID", userID);
+                startActivity(intent);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
         return contentView;
     }
 }

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/background_all"
     tools:context=".UI.Fragment.HomeFragment">
 
@@ -13,13 +14,15 @@
             android:layout_marginHorizontal="7dp"
             android:orientation="vertical">
 
-            <SearchView
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/sv_product_home"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/round_bg"
-                android:padding="3dp" />
+                android:padding="3dp"
+                app:iconifiedByDefault="false" />
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewPager2"

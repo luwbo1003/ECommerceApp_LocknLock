@@ -1,6 +1,7 @@
 package com.example.group7.ViewModels;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.group7.Storage.Firebase;
@@ -34,7 +35,24 @@ public class ProductViewModel extends ViewModel {
     public LiveData<Product> getProductByIdDb(String productID){
         return firebase.getFirebaseSingleData("Products/" + productID, Product.class);
     }
+    public LiveData<ArrayList<Product>> searchProducts(String name, int category) {
+        MutableLiveData<ArrayList<Product>> filteredData = new MutableLiveData<>();
+        productLiveData.observeForever(products -> {
+            ArrayList<Product> filteredProducts = new ArrayList<>();
+            for (Product product : products) {
+                if (category == 200) {
+                    if (product.getProduct_name().toLowerCase().contains(name.toLowerCase())) {
+                        filteredProducts.add(product);
+                    }
+                } else {
+                    if (product.getProduct_name().toLowerCase().contains(name.toLowerCase()) && product.getProduct_cate() == category) {
+                        filteredProducts.add(product);
+                    }
+                }
+            }
+            filteredData.setValue(filteredProducts);
+        });
 
-
-
+        return filteredData;
+    }
 }
