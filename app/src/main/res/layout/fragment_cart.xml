@@ -40,12 +40,38 @@
             android:padding="20dp" />
         <!-- kết thúc recyler product-->
 
+        <LinearLayout
+            android:id="@+id/linear_cart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/iv_empty_cart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/onlineshopping" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_rounded_medium"
+                android:gravity="center"
+                android:text="Please add something into your cart"
+                android:textSize="23dp" />
+        </LinearLayout>
+
     </LinearLayout>
     <!--kết thúc phần top navbar và recycler view sản phẩm-->
 
-
     <!--phần chi tiết giá và nút checkout-->
     <LinearLayout
+        android:id="@+id/linear_checkout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"

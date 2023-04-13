@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.group7.R;
@@ -81,6 +82,7 @@ public class CartFragment extends Fragment {
     TextView tv_subtotal, tv_total, tv_shipping;
     String user_id = "";
     ArrayList<Cart> list;
+    LinearLayout linear_checkout, linear_cart;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -91,6 +93,8 @@ public class CartFragment extends Fragment {
         tv_subtotal = contentView.findViewById(R.id.iv_subtotal_price);
         tv_total = contentView.findViewById(R.id.iv_total_price);
         tv_shipping = contentView.findViewById(R.id.iv_delivery_price);
+        linear_cart = contentView.findViewById(R.id.linear_cart);
+        linear_checkout = contentView.findViewById(R.id.linear_checkout);
 
 
         Bundle args = getArguments();
@@ -110,6 +114,10 @@ public class CartFragment extends Fragment {
             if (carts != null) {
                 list = CartViewModel.getCartsByUserId(carts, user_id);
                 cartAdapter.setCarts(list);
+                if (list.size() < 1){
+                    linear_checkout.setVisibility(View.GONE);
+                    linear_cart.setVisibility(View.VISIBLE);
+                }
             }
         });
 
