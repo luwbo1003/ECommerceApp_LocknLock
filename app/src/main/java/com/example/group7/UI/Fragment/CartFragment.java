@@ -108,7 +108,7 @@ public class CartFragment extends Fragment {
         recyclerView.setAdapter(cartAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(contentView.getContext()));
 
-        //Retrieve carts data
+        //Lấy dữ liêu giỏ hàng
         cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
         cartViewModel.getCartsLiveData().observe(getViewLifecycleOwner(), carts -> {
             if (carts != null) {
@@ -121,7 +121,7 @@ public class CartFragment extends Fragment {
             }
         });
 
-        //Retrieve products data
+        //Lấy dữ liệu sản phẩm
         productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
         productViewModel.getProductLiveData().observe(getViewLifecycleOwner(), products -> {
             if (products != null) {
@@ -157,7 +157,6 @@ public class CartFragment extends Fragment {
                 }
             }
         });
-
         return contentView;
     }
 }

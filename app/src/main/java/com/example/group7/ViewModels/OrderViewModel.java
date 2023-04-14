@@ -26,11 +26,9 @@ public class OrderViewModel extends ViewModel {
     public void addOrder(Order data, String key, Context context, String success, String fail) {
         firebase.addFirebaseData("Orders", data, key, context, success, fail);
     }
-
     public String getOrderKey() {
         return firebase.getKey("Orders");
     }
-
     public static ArrayList<Order> getOrdersByUserId(ArrayList<Order> orders, String userId) {
         ArrayList<Order> orderArrayList = new ArrayList<>();
         for (Order order : orders) {
