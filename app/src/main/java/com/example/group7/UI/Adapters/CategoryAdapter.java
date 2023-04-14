@@ -19,11 +19,17 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
     private ArrayList<Category> categories;
     private final LayoutInflater minflater;
     private Context context;
+    private String userID;
+
 
     public CategoryAdapter(Context context) {
         this.categories = new ArrayList<Category>();
         this.context = context;
         minflater = LayoutInflater.from(context);
+    }
+    public void setUserID(String userID) {
+        this.userID = userID;
+        notifyDataSetChanged();
     }
 
 
@@ -42,6 +48,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
         Category mCategory = categories.get(position);
+        holder.setUserID(userID);
         holder.setId(mCategory.getId());
         holder.getTv_catename().setText(mCategory.getCate_name());
         StorageUtils.loadStorageImageIntoImageView("category_img", mCategory.getImg_name(),holder.getIv_cateimg());

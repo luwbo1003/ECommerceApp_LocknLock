@@ -139,6 +139,7 @@ public class HomeFragment extends Fragment {
                 categoryAdapter.setCategories(categories);
             }
         });
+        categoryAdapter.setUserID(userID);
 
         //Gridview product
         GridView gridView = contentView.findViewById(R.id.gridView);

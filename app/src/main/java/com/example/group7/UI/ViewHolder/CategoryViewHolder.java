@@ -19,6 +19,15 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder implements View.
     private int id;
     private TextView tv_catename;
     private ImageView iv_cateimg;
+    private  String userID;
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
 
     public int getId() {
         return id;
@@ -60,6 +69,7 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder implements View.
     public void onClick(View v) {
         Intent intent = new Intent(mainActivity, SearchActivity.class);
         intent.putExtra("cate_id", id);
+        intent.putExtra("userID", userID);
         mainActivity.startActivity(intent);
     }
 }

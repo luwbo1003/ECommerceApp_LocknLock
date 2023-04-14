@@ -37,6 +37,7 @@
             android:id="@+id/ryc_cart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="150dp"
             android:padding="20dp" />
         <!-- kết thúc recyler product-->
 
@@ -60,7 +61,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/sf_pro_rounded_medium"
+                android:fontFamily="@font/poppins_medium"
                 android:gravity="center"
                 android:text="Please add something into your cart"
                 android:textSize="23dp" />
@@ -100,7 +101,7 @@
                     android:fontFamily="@font/poppins_medium"
                     android:text="Subtotal"
                     android:textColor="#3C3B3B"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:id="@+id/iv_subtotal_price"
@@ -108,9 +109,9 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_medium"
                     android:gravity="end"
-                    android:text="$ 15.00"
+                    android:text="0"
                     android:textColor="@color/black"
-                    android:textSize="19dp" />
+                    android:textSize="14dp" />
             </LinearLayout>
             <!-- kết thúc subtotal-->
 
@@ -127,7 +128,7 @@
                     android:fontFamily="@font/poppins_medium"
                     android:text="Delivery"
                     android:textColor="#3C3B3B"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:id="@+id/iv_delivery_price"
@@ -137,10 +138,15 @@
                     android:gravity="end"
                     android:text="10000"
                     android:textColor="@color/black"
-                    android:textSize="19dp" />
+                    android:textSize="14dp" />
             </LinearLayout>
             <!--kết thúc delivery-->
-
+            <View
+                android:layout_width="350dp"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:layout_marginVertical="7dp"
+                android:background="@color/black"/>
             <!--total-->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -162,9 +168,9 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_medium"
                     android:gravity="end"
-                    android:text="$ 15.00"
+                    android:text="0"
                     android:textColor="@color/black"
-                    android:textSize="25dp" />
+                    android:textSize="20dp" />
             </LinearLayout>
             <!-- kết thúc total-->
 

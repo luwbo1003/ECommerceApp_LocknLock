@@ -11,13 +11,11 @@ import java.util.ArrayList;
 
 public class ProductViewModel extends ViewModel {
     private Firebase firebase;
-
     private LiveData<ArrayList<Product>> productLiveData ;
 
     public ProductViewModel(){
         firebase = new Firebase();
         productLiveData = firebase.getFirebaseData("Products", Product.class);
-
     }
 
     public LiveData<ArrayList<Product>> getProductLiveData() {

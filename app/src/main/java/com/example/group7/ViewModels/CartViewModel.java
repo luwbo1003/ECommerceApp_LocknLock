@@ -25,10 +25,13 @@ public class CartViewModel extends ViewModel {
 
     public static ArrayList<Cart> getCartsByUserId(ArrayList<Cart> cartList, String userId) {
         ArrayList<Cart> cartArrayList = new ArrayList<>();
-        for (Cart cart : cartList) {
-            if (cart.getUser_id().equals(userId)) {
+        int i = 0;
+        while (i < cartList.size()) {
+            Cart cart = cartList.get(i);
+            if (cart.getUser_id() != null && cart.getUser_id().equals(userId)) {
                 cartArrayList.add(cart);
             }
+            i++;
         }
         return cartArrayList;
     }
