@@ -180,7 +180,6 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
                 return true;
             }
-
             @Override
             public boolean onQueryTextChange(String newText) {
                 return false;

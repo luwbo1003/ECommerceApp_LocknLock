@@ -11,9 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.group7.R;
+import com.example.group7.ViewModels.UserViewModel;
 import com.example.group7.activities.LoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -66,11 +68,11 @@ public class UserFragment extends Fragment {
 
     }
 
-    FirebaseAuth auth;
-    TextView txt;
-    FirebaseUser user;
+    UserViewModel userViewModel;
     TextView tv_email;
-    Button btn_logout;
+    Button btn_logout, btn_save;
+    EditText ed_pass;
+    String id;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -80,14 +82,25 @@ public class UserFragment extends Fragment {
 
         tv_email= root.findViewById(R.id.tv_email);
         btn_logout = root.findViewById(R.id.btn_logout);
+        ed_pass = root.findViewById(R.id.ed_pass);
+        btn_save = root.findViewById(R.id.btn_save);
 
-        String id;
+
         Bundle args = getArguments();
         if (args != null) {
             id = args.getString("id");
             String emailUser = args.getString("email");
             tv_email.setText(emailUser);
         }
+        btn_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String pass = ed_pass.getText().toString();
+                userViewModel.updatePassword(id, pass, getContext(), "Đã đổi mật khẩu", "Không thể đổi mật khẩu");
+            }
+        });
+
+
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -69,7 +69,6 @@ public class Firebase {
     public void updateFirebaseData(String nodePath, String key, String detailPath, Object newDetail) {
         dbRef.child(nodePath).child(key).child(detailPath).setValue(newDetail);
     }
-
     public void updateFirebaseData(String nodePath, String key, String detailPath, Object newDetail, Context context, String success, String fail) {
         dbRef.child(nodePath).child(key).child(detailPath).setValue(newDetail).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override

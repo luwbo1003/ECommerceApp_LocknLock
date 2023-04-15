@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.example.group7.R;
 import com.example.group7.UI.Adapters.OrderAdapter;
@@ -66,6 +67,8 @@ public class OrderFragment extends Fragment {
     }
     String user_id;
     OrderViewModel orderViewModel;
+    LinearLayout linear_cart;
+    RecyclerView recycler_order;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -78,16 +81,22 @@ public class OrderFragment extends Fragment {
             user_id = args.getString("id");
         }
 
-        RecyclerView recyclerView = contentView.findViewById(R.id.recycler_order);
+        recycler_order= contentView.findViewById(R.id.recycler_order);
+        linear_cart = contentView.findViewById(R.id.linear_cart);
+
         OrderAdapter orderAdapter = new OrderAdapter(contentView.getContext());
-        recyclerView.setAdapter(orderAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(contentView.getContext()));
+        recycler_order.setAdapter(orderAdapter);
+        recycler_order.setLayoutManager(new LinearLayoutManager(contentView.getContext()));
 
         orderViewModel = new ViewModelProvider(this).get(OrderViewModel.class);
         orderViewModel.getOrdersLiveData().observe(getViewLifecycleOwner(), orders -> {
             if (orders != null) {
                 ArrayList<Order> list = OrderViewModel.getOrdersByUserId(orders, user_id);
                 orderAdapter.setOrders(list);
+                if (list.size() < 1){
+                    recycler_order.setVisibility(View.GONE);
+                    linear_cart.setVisibility(View.VISIBLE);
+                }
             }
         });
         return contentView;

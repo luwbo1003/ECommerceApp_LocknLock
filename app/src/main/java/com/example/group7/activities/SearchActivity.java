@@ -60,7 +60,6 @@ public class SearchActivity extends AppCompatActivity {
                 });
                 return true;
             }
-
             @Override
             public boolean onQueryTextChange(String newText) {
                 productViewModel.searchProducts(newText, category_id).observe(SearchActivity.this, products -> {
@@ -70,7 +69,6 @@ public class SearchActivity extends AppCompatActivity {
                 });
                 return true;
             }
-
         });
         searchView.setQuery(productName, false);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

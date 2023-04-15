@@ -66,8 +66,6 @@
             android:padding="15dp" />
         <!-- kết thúc recyler product-->
 
-
-
     </LinearLayout>
     <!--kết thúc phần top navbar và recycler view sản phẩm-->
 

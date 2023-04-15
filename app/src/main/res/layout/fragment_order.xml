@@ -14,24 +14,53 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:paddingBottom="5dp"
             android:paddingTop="10dp">
 
             <TextView
+                android:id="@+id/tv_tittle_cart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:fontFamily="@font/poppins_medium"
-                android:text="My orders"
+                android:text="My Purchases"
                 android:textColor="@color/black"
-                android:textSize="25sp" />
+                android:textSize="25dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_cart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/iv_empty_cart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/orderdone" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_order"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="10dp"
             android:divider="@null"
             android:scrollbars="none" />
+    <LinearLayout
+        android:id="@+id/linear_checkout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:elevation="20dp"
+        android:orientation="vertical">
+
+    </LinearLayout>
 
     </LinearLayout>
 

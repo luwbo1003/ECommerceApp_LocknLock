@@ -1,20 +1,26 @@
 package com.example.group7.ViewModels;
 
+import android.content.Context;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.group7.Storage.Firebase;
+import com.example.group7.models.Cart;
 import com.example.group7.models.User;
 
 import java.util.ArrayList;
 
 public class UserViewModel extends ViewModel {
-    private Firebase firebaseRepository;
+    private static Firebase firebase;
     private LiveData<ArrayList<User>> usersLiveData;
 
     public UserViewModel() {
-        firebaseRepository = new Firebase();
-        usersLiveData = firebaseRepository.getFirebaseData("Users", User.class);
+        firebase = new Firebase();
+        usersLiveData = firebase.getFirebaseData("Users", User.class);
+    }
+    public static void updatePassword(String id, String detail, Context context, String success, String fail){
+        firebase.updateFirebaseData("Users", id, "password", detail,context, success, fail);
     }
 
     public LiveData<ArrayList<User>> getUsersLiveData() {
@@ -22,6 +28,6 @@ public class UserViewModel extends ViewModel {
     }
 
     public LiveData<User> getUserByIdFromDb(String userId) {
-        return firebaseRepository.getFirebaseSingleData("Users/" + userId, User.class);
+        return firebase.getFirebaseSingleData("Users/" + userId, User.class);
     }
 }
