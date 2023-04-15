@@ -36,21 +36,19 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void run() {
                 onBoardingScreen = getSharedPreferences("onBoardingScreen", MODE_PRIVATE);
-                boolean isFirstLaunch = onBoardingScreen.getBoolean("firstTime", true);
+//                boolean isFirstLaunch = onBoardingScreen.getBoolean("firstTime", true);
 
-                if (isFirstLaunch) {
-                    SharedPreferences.Editor editor = onBoardingScreen.edit();
-                    editor.putBoolean("firstTime", false);
-                    editor.commit();
-
-                    Intent intent = new Intent(getApplicationContext(), OnboardingActivity.class);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
+//                if (isFirstLaunch) {
+//                    SharedPreferences.Editor editor = onBoardingScreen.edit();
+//                    editor.putBoolean("firstTime", false);
+//                    editor.commit();
+//
+//
+//                } //else {
+////                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+////                    startActivity(intent);
+////                    finish();
+////                }
 
 
                 loginPreferences = getSharedPreferences("isLoggin", MODE_PRIVATE);
@@ -67,7 +65,7 @@ public class WelcomeActivity extends AppCompatActivity {
                     });
 
                 } else {
-                    Intent intent = new Intent(getBaseContext(), LoginActivity.class);
+                    Intent intent = new Intent(getBaseContext(), OnboardingActivity.class);
                     startActivity(intent);
                 }
             }
