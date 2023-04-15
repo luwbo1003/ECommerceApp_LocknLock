@@ -1,4 +1,4 @@
-package com.example.group7.Storage;
+package com.example.group7.UI.Storage;
 
 import android.content.Context;
 import android.widget.Toast;

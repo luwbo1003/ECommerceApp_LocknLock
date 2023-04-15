@@ -3,7 +3,7 @@ package com.example.group7.ViewModels;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.group7.Storage.Firebase;
+import com.example.group7.UI.Storage.Firebase;
 import com.example.group7.models.Banner;
 
 import java.util.ArrayList;

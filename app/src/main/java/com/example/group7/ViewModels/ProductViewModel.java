@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.group7.Storage.Firebase;
+import com.example.group7.UI.Storage.Firebase;
 import com.example.group7.models.Product;
 
 import java.util.ArrayList;

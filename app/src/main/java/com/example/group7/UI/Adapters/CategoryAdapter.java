@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.group7.R;
-import com.example.group7.Storage.StorageUtils;
+import com.example.group7.UI.Storage.StorageUtils;
 import com.example.group7.UI.ViewHolder.CategoryViewHolder;
 import com.example.group7.models.Category;
 

@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.group7.R;
-import com.example.group7.Storage.StorageUtils;
+import com.example.group7.UI.Storage.StorageUtils;
 import com.example.group7.models.Product;
 
 import java.util.ArrayList;

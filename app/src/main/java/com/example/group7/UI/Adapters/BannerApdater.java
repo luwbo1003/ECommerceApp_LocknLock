@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.group7.R;
-import com.example.group7.Storage.StorageUtils;
+import com.example.group7.UI.Storage.StorageUtils;
 import com.example.group7.UI.ViewHolder.BannerViewHolder;
 import com.example.group7.models.Banner;
 
