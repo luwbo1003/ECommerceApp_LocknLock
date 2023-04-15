@@ -9,16 +9,11 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.group7.R;
-import com.example.group7.models.User;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.example.group7.ViewModels.UserViewModel;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -36,9 +31,7 @@ public class WelcomeActivity extends AppCompatActivity {
         action_image = findViewById(R.id.action_image);
         move = AnimationUtils.loadAnimation(this, R.anim.move);
         action_image.setAnimation(move);
-
-        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("Users");
-
+        UserViewModel userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -59,30 +52,18 @@ public class WelcomeActivity extends AppCompatActivity {
                     finish();
                 }
 
+
                 loginPreferences = getSharedPreferences("isLoggin", MODE_PRIVATE);
                 Boolean isLogged = loginPreferences.getBoolean("isLogged", false);
                 String userId = loginPreferences.getString("userId", "");
 
                 if (isLogged) {
-                    userRef.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                                User user = dataSnapshot.getValue(User.class);
-                                if (userId.equals(user.getId())) {
-                                    Intent intent = new Intent(getBaseContext(), MainActivity.class);
-                                    intent.putExtra("id", user.getId());
-                                    intent.putExtra("email", user.getEmail());
-                                    startActivity(intent);
-                                    return;
-                                }
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
+                    userViewModel.getUserByIdFromDb(userId).observe(WelcomeActivity.this, user -> {
+                        Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                        intent.putExtra("id", user.getId());
+                        intent.putExtra("email", user.getEmail());
+                        startActivity(intent);
+                        return;
                     });
 
                 } else {
@@ -91,5 +72,6 @@ public class WelcomeActivity extends AppCompatActivity {
                 }
             }
         }, SPLASH_TIMER);
+
     }
 }

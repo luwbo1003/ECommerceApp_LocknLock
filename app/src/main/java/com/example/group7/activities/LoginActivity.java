@@ -11,18 +11,15 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.group7.R;
-import com.example.group7.UI.Fragment.UserFragment;
+import com.example.group7.ViewModels.UserViewModel;
 import com.example.group7.models.User;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -49,6 +46,8 @@ public class LoginActivity extends AppCompatActivity {
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("Users");
         SharedPreferences mPreferences = getSharedPreferences("isLoggin", MODE_PRIVATE);
 
+        UserViewModel userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,35 +64,27 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
 
-                userRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                            User user = dataSnapshot.getValue(User.class);
-                            if (email.equals(user.getEmail())) {
-                                if (password.equals(user.getPassword())) {
-                                    Intent intent = new Intent(getBaseContext(), MainActivity.class);
-                                    intent.putExtra("id", user.getId());
-                                    intent.putExtra("email", user.getEmail());
+                userViewModel.getUsersLiveData().observe(LoginActivity.this, users -> {
+                    for (User user : users) {
+                        if (email.equals(user.getEmail())) {
+                            if (password.equals(user.getPassword())) {
+                                Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                                intent.putExtra("id", user.getId());
+                                intent.putExtra("email", user.getEmail());
 
-                                    //Save login
-                                    SharedPreferences.Editor editor = mPreferences.edit();
-                                    editor.putBoolean("isLogged", true);
-                                    editor.putString("userId", user.getId());
-                                    editor.apply();
-                                    startActivity(intent);
-                                    return;
-                                } else {
-                                    Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_LONG).show();
-                                    break;
-                                }
+                                //Save login
+                                SharedPreferences.Editor editor = mPreferences.edit();
+                                editor.putBoolean("isLogged", true);
+                                editor.putString("userId", user.getId());
+                                editor.apply();
+                                startActivity(intent);
+                                finish();
+                                return;
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_LONG).show();
+                                break;
                             }
                         }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
                     }
                 });
             }
