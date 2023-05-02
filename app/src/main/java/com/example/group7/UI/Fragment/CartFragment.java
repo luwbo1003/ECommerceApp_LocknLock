@@ -128,7 +128,6 @@ public class CartFragment extends Fragment {
                 cartAdapter.setProducts(products);
             }
         });
-
         cartAdapter.getSubtotal().observe(getViewLifecycleOwner(), total -> {
             if (total != null) {
                 tv_subtotal.setText(String.valueOf(total));
@@ -137,7 +136,6 @@ public class CartFragment extends Fragment {
                 tv_total.setText(String.valueOf(totals));
             }
         });
-
         btn_checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

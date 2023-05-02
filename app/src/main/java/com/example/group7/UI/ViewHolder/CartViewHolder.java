@@ -114,7 +114,6 @@ public class CartViewHolder extends RecyclerView.ViewHolder {
                         cartAdapter.notifyDataSetChanged();
                     } else {
                         AlertDialog.Builder builder = new AlertDialog.Builder(mainActivity);
-
                         builder.setMessage("Do you want to remove this product?")
                                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                     @Override

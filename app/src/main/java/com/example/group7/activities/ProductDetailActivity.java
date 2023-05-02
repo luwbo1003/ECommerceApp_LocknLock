@@ -69,7 +69,6 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
         tv_price.setText(Integer.toString(subtotal));
 
         cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
-
         StorageUtils.loadStorageImageIntoImageView("product_img",product.getProduct_img(), iv_product_image);
     }
 

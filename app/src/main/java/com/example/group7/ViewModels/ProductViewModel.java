@@ -50,7 +50,6 @@ public class ProductViewModel extends ViewModel {
             }
             filteredData.setValue(filteredProducts);
         });
-
         return filteredData;
     }
 }
