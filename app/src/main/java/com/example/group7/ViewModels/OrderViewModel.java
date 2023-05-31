@@ -18,7 +18,6 @@ public class OrderViewModel extends ViewModel {
         firebase = new Firebase();
         ordersLiveData = firebase.getFirebaseData("Orders", Order.class);
     }
-
     public LiveData<ArrayList<Order>> getOrdersLiveData() {
         return ordersLiveData;
     }

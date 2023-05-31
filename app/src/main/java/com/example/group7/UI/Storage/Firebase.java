@@ -36,7 +36,6 @@ public class Firebase {
                 }
                 firebaseData.setValue(dataList);
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 firebaseData.setValue(null);
@@ -53,7 +52,6 @@ public class Firebase {
                 T data = snapshot.getValue(dataType);
                 firebaseData.setValue(data);
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 firebaseData.setValue(null);
@@ -83,15 +81,17 @@ public class Firebase {
         });
     }
 
+    //random key
     public String getKey(String nodePath) {
         String key = dbRef.child(nodePath).push().getKey();
         return key;
     }
 
-    public <T> void addFirebaseData(String nodePath, T data, String key) {
-        dbRef.child(nodePath).child(key).setValue(data);
-    }
+//    public <T> void addFirebaseData(String nodePath, T data, String key) {
+//        dbRef.child(nodePath).child(key).setValue(data);
+//    }
 
+    //add dữ liệu trả về thông báo
     public <T> void addFirebaseData(String nodePath, T data, String key, Context context, String success, String fail) {
         dbRef.child(nodePath).child(key).setValue(data).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override

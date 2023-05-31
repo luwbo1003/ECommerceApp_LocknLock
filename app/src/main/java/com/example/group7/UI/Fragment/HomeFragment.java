@@ -131,7 +131,7 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(contentView.getContext(), LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setAdapter(categoryAdapter);
 
-            // retrieve categories data
+            // lấy dữ liệu category
 
         categoryViewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
         categoryViewModel.getCategoriesLiveData().observe(getViewLifecycleOwner(), categories -> {
@@ -145,7 +145,6 @@ public class HomeFragment extends Fragment {
         GridView gridView = contentView.findViewById(R.id.gridView);
         ProductAdapter productAdapter = new ProductAdapter(contentView.getContext());
         gridView.setAdapter(productAdapter);
-
 
         productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
         productViewModel.getProductLiveData().observe(getViewLifecycleOwner(), products -> {
@@ -185,7 +184,6 @@ public class HomeFragment extends Fragment {
                 return false;
             }
         });
-
         return contentView;
     }
 }

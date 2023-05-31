@@ -71,7 +71,6 @@ public class LoginActivity extends AppCompatActivity {
                                 Intent intent = new Intent(getBaseContext(), MainActivity.class);
                                 intent.putExtra("id", user.getId());
                                 intent.putExtra("email", user.getEmail());
-
                                 //Save login
                                 SharedPreferences.Editor editor = mPreferences.edit();
                                 editor.putBoolean("isLogged", true);
