@@ -3,19 +3,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:elevation="3dp"
     android:background="@drawable/product_cart"
->
+    android:elevation="3dp"
+    android:orientation="vertical">
 
-    <com.makeramen.roundedimageview.RoundedImageView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/iv_product_item_home"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_gravity="center"
-        android:padding="10dp"
         android:adjustViewBounds="true"
+        android:padding="10dp"
         app:riv_corner_radius="12dp">
 
     </com.makeramen.roundedimageview.RoundedImageView>
